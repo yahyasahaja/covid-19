@@ -1,8 +1,17 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
+import { BASE_URL } from "@/config";
+// import { AsyncComponentFactory } from "vue/types/options";
 
 Vue.use(VueRouter);
+
+// const generateAsyncComponent = (
+//   importFunc: () => Promise<any>
+// ): AsyncComponentFactory => () => ({
+//   component: importFunc,
+//   loading:
+// });
 
 const routes: Array<RouteConfig> = [
   {
@@ -23,7 +32,7 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: BASE_URL,
   routes
 });
 
