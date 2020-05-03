@@ -51,8 +51,11 @@ export const calculateCovidTotal = (covidData: CovidData[]): CovidData => {
 };
 
 export const adjustCovidTimeline = (covidData: CovidData[]): CovidData[] => {
-  return covidData.reverse().map(covid => ({
-    ...covid,
-    Date: parseDate(new Date(covid.Date))
-  }));
+  return covidData
+    .slice()
+    .reverse()
+    .map(covid => ({
+      ...covid,
+      Date: parseDate(new Date(covid.Date))
+    }));
 };
