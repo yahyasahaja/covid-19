@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Indonesia Covid-19 Tracking</h1>
+    <h1>Covid-19 Tracking</h1>
     <div class="data-wrapper">
       <div class="main-data">
         <BaseDataViewer large label="Confirmed" :value="covidTotal.Confirmed" />
