@@ -38,23 +38,16 @@ export const parseDate = (date: Date) => {
 };
 
 export const calculateCovidTotal = (covidData: CovidData[]): CovidData => {
-  return covidData.reduce(
-    (prev, cur) => ({
-      ...prev,
-      Active: cur.Active + prev.Active,
-      Confirmed: cur.Confirmed + prev.Confirmed,
-      Deaths: cur.Deaths + prev.Deaths,
-      Recovered: cur.Recovered + prev.Recovered
-    }),
-    {
-      Country: "",
-      Active: 0,
-      Confirmed: 0,
-      Deaths: 0,
-      Recovered: 0,
-      Date: parseDate(new Date())
-    }
-  );
+  const alt = {
+    Country: "",
+    Active: 0,
+    Confirmed: 0,
+    Deaths: 0,
+    Recovered: 0,
+    Date: parseDate(new Date())
+  };
+
+  return covidData.length > 0 ? covidData[covidData.length - 1] : alt;
 };
 
 export const adjustCovidTimeline = (covidData: CovidData[]): CovidData[] => {
