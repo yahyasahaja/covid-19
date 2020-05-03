@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import BaseSwitchTheme from "@/components/BaseSwitchTheme.vue";
 import { THEME_LIGHT } from "../config";
 import { mapActions, mapState } from "vuex";
@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     materialColor() {
-      const currentTheme = this.$store.state.themeModule.theme;
+      const currentTheme = (this as any).$store.state.themeModule.theme;
       return currentTheme === THEME_LIGHT ? "black" : "white";
     },
     ...mapState<CountryState>("countryModule", {
@@ -51,9 +51,9 @@ export default {
     })
   },
   watch: {
-    selectedCountry(slug) {
-      this.$store.state.countryModule.selectedCountry = slug;
-      this.fetchCovidData(slug);
+    selectedCountry(slug: string) {
+      (this as any).$store.state.countryModule.selectedCountry = slug;
+      (this as any).fetchCovidData(slug);
     }
   },
   methods: {
@@ -61,9 +61,8 @@ export default {
     ...mapActions("covidModule", ["fetchCovidData"])
   },
   mounted() {
-    this.fetchCountries();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (this as any).selectedCountry = this.$store.state.countryModule.selectedCountry;
+    (this as any).fetchCountries();
+    (this as any).selectedCountry = (this as any).$store.state.countryModule.selectedCountry;
   },
   components: {
     BaseSwitchTheme

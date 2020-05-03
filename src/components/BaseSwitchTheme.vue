@@ -5,6 +5,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mapActions } from "vuex";
 import { THEME_LIGHT } from "../config";
 
@@ -12,9 +13,9 @@ export default {
   methods: {
     ...mapActions("themeModule", ["switchTheme"]),
     switchAllTheme() {
-      const currentTheme = this.$store.state.themeModule.theme;
-      this.$vuetify.theme.dark = currentTheme === THEME_LIGHT;
-      this.switchTheme();
+      const currentTheme = (this as any).$store.state.themeModule.theme;
+      (this as any).$vuetify.theme.dark = currentTheme === THEME_LIGHT;
+      (this as any).switchTheme();
     }
   }
 };
